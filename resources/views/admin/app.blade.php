@@ -341,30 +341,30 @@
                         </li>
 
                         <!-- Category Nav -->
-                        <!-- <li class="nav-item">
+                        <li class="nav-item">
                             <a href="#"
-                                class="nav-link {{ ( request()->is('add-category') || request()->is('view-categories') ) }}">
+                                class="nav-link {{ ( request()->is('add-footer-text') || request()->is('view-footer-text') ) }}">
                                 <i class="nav-icon fas fa-folder"></i>
                                 <p>
-                                    Categories
+                                    Footer Section
                                     <i class="fas fa-angle-left right"></i>
 
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{url('webadmin/footer-section/create')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Add Category</p>
+                                        <p>Add Footer Text</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{url('webadmin/footer-section')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>View Categories</p>
+                                        <p>View Footer Text</p>
                                     </a>
                                 </li>
-                            </ul> -->
+                            </ul>
                         <!-- Category Nav End -->
 
 
@@ -426,7 +426,6 @@
         <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
-
     <!-- jQuery -->
     <script src="{{asset('admin/plugins/jquery/jquery.min.js')}}"></script>
     <!-- jQuery UI 1.11.4 -->
