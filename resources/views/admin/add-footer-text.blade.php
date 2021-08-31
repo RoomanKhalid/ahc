@@ -13,7 +13,6 @@
 
     <form class="form-horizontal" method="post" action="{{route('webadminfooter-section.store')}}" enctype="multipart/form-data">
         @csrf
-        @method('put')
         <div class="card-body">
             <div class="form-group row">
                 <label for="name" class="col-sm-2 col-form-label">Prefix Line</label>

@@ -43,8 +43,7 @@ class FooterSectionController extends Controller
         $footerText->postfix_words = $request->postfix_words;
         $footerText->status = 1;
         $footerText->save();
-        session()->flash('text_added', 'Footer text added successfully.');
-        return redirect('webadmin/footer-section');
+        return redirect()->route('webadminfooter-section.index')->with('text_added', 'Footer text added successfully.'); 
     }
 
     /**
@@ -66,7 +65,6 @@ class FooterSectionController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        return $id;
         $text = FooterSection::find($id);
         return view('admin.edit-footer-text', compact('text'));
     }
@@ -84,8 +82,7 @@ class FooterSectionController extends Controller
         $footerText->prefix_line = $request->prefix_line;
         $footerText->postfix_words = $request->postfix_words;
         $footerText->save();
-        session()->flash('text_added', 'Footer text added successfully.');
-        return redirect('webadmin/footer-section');
+        return redirect()->route('webadminfooter-section.index')->with('text_updated', 'Footer text updated successfully.');  
     }
 
     /**

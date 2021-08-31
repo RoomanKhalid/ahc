@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\webAdmin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -9,9 +10,14 @@ use Illuminate\Support\Facades\Session;
 
 class CustomAuthController extends Controller
 {
+
+    public function hello() {
+        return "done";
+    }
    
     public function customLogin(Request $request)
     {
+        // return $request->all();
         $this->validate($request,[
             'email' => 'required',
             'password' => 'required',
@@ -20,11 +26,10 @@ class CustomAuthController extends Controller
         $credentials = $request->only('email', 'password');
         // return \Hash::make(123456789);
         if (Auth::guard('admin')->attempt($credentials)) {
-        //    return auth()->guard('admin')->user();
-            return redirect()->intended('admin/dashboard');
+            return redirect()->intended('webadmin/dashboard');
         }
         else{
-            return redirect("login")->with('message', 'Login details are not valid!');
+            return redirect("webadmin/login")->with('message', 'Login details are not valid!');
         }   
     }
 
@@ -34,6 +39,6 @@ class CustomAuthController extends Controller
         Session::flush();
         Auth::logout();
   
-        return Redirect('admin/login');
+        return Redirect('webadmin/login');
     }
 }

@@ -376,7 +376,7 @@
                         </li> -->
 
                         <li class="nav-item">
-                            <a href="{{route('signout')}}" class="nav-link">
+                            <a href="{{url('webadmin/signout')}}" class="nav-link">
                                 <i class="nav-icon far fa-circle text-danger"></i>
                                 <p class="text">Logout</p>
                             </a>

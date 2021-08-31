@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CustomAuthController;
+use App\Http\Controllers\webAdmin\CustomAuthController;
 use App\Http\Controllers\webAdmin\FooterSectionController;
 
 /*
@@ -15,9 +15,16 @@ use App\Http\Controllers\webAdmin\FooterSectionController;
 |
 */
 
-Route::get("hello", function () {
-    return "hello";
+//login section
+Route::get('/', function () {
+    return view('admin.login');
 });
+Route::post('custom-login', [CustomAuthController::class, 'customLogin']);
+Route::get('login', function () { return view('admin.login'); });
+Route::get('dashboard', function () {
+    return view('admin.dashboard');
+});
+Route::get('signout', [CustomAuthController::class, 'signOut']);
 
 //Footer Section
 Route::resource('footer-section', FooterSectionController::class);

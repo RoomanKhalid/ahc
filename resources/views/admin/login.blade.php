@@ -39,13 +39,9 @@
                     {{ session()->get('message1') }}
                 </div>
                 @endif
-                <form method="POST" action="{{ route('login.custom') }}">
+                <form method="POST" action="{{url('webadmin/custom-login')}}">
                     @csrf
-                    @if($errors->first('email'))
-                    <div class="alert alert-danger">
-                        {{$errors->first('email')}}
-                    </div>
-                    @endif
+                    
                     <div class="input-group mb-3">
                         <input type="email" name="email" class="form-control" placeholder="Email">
                         <div class="input-group-append">
@@ -54,11 +50,7 @@
                             </div>
                         </div>
                     </div>
-                    @if($errors->first('password'))
-                    <div class="alert alert-danger">
-                        {{$errors->first('password')}}
-                    </div>
-                    @endif
+                    
                     <div class="input-group mb-3">
                         <input type="password" name="password" class="form-control" placeholder="Password">
                         <div class="input-group-append">
