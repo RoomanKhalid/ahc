@@ -31,3 +31,5 @@ Route::get('signout', [CustomAuthController::class, 'signOut']);
 Route::resource('banner', BannerController::class);
 //Footer Section
 Route::resource('footer-section', FooterSectionController::class);
+
+Route::get('footer-section/change-status/{id}', [FooterSectionController::class,'changeStatus']);

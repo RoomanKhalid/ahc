@@ -3,11 +3,6 @@
 @section('header_title','View Footer Text')
 @section('maincontent')
 
-
-<div id="notifDiv"
-    style="z-index:10000; display: none; background: green; font-weight: 450; width: 350px; position: fixed; top: 32%; left: 22%;  color: white; padding: 5px 20px">
-</div>
-
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">View Footer Texts</h3>
@@ -44,14 +39,13 @@
                     $i++;
                     @endphp
                     <td class="text-center align-middle">
-                        @if($text->status == 1)
-                        <button
-                            class="pushy__btn pushy__btn--sm pushy__btn--red change_status_btn enable_disable_category"
-                            id="{{$text->id}}">Disable</button>
+                        @if($text->status == 0)
+                        <button class="pushy__btn pushy__btn--sm pushy__btn--red change_status_btn enable_disable_text"
+                            id="{{$text->id}}">Disabled</button>
                         @else
                         <button
-                            class="pushy__btn pushy__btn--sm pushy__btn--green change_status_btn enable_disable_category"
-                            id="{{$text->id}}">Enable</button>
+                            class="pushy__btn pushy__btn--sm pushy__btn--green change_status_btn enable_disable_text"
+                            id="{{$text->id}}">Enabled</button>
                         @endif
                     </td>
                     <td class=" text-center align-middle">
@@ -95,6 +89,32 @@ $('#delBtn').click(function() {
         e.preventDefault();
     }
 })
+</script>
+
+<script>
+$(document).ready(function() {
+    $(document).on('click', '.enable_disable_text', function() {
+        const thisRef = $(this);
+        thisRef.text('Processing');
+        $.ajax({
+            type: 'GET',
+            url: 'footer-section/change-status/' + thisRef.attr('id'),
+            success: function(response) {
+                console.log(response);
+                if (response.status == 1) {
+                    toastr.success(response.msg);
+
+                    thisRef.text(response.text);
+                    thisRef.removeClass(response.removeClass);
+                    thisRef.addClass(response.class);
+
+                } else {
+                    toastr.success(response.msg);
+                }
+            }
+        });
+    });
+});
 </script>
 
 @endsection

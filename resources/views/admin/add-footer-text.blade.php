@@ -41,6 +41,7 @@
 
         <div class="card-footer">
             <button type="submit" class="btn btn-info">Add</button>
+            <a class="btn btn-danger" href="{{url('webadmin/footer-section')}}">Cancel</a>
         </div>
         <!-- /.card-footer -->
     </form>
