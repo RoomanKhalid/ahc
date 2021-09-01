@@ -5,6 +5,7 @@ namespace App\Http\Controllers\webAdmin;
 use App\Http\Controllers\Controller;
 use App\Models\webAdmin\FooterSection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class FooterSectionController extends Controller
 {
@@ -25,7 +26,7 @@ class FooterSectionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         return view('admin.add-footer-text');
     }
@@ -37,13 +38,26 @@ class FooterSectionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $footerText = new FooterSection();
-        $footerText->prefix_line = $request->prefix_line;
-        $footerText->postfix_words = $request->postfix_words;
-        $footerText->status = 1;
-        $footerText->save();
-        return redirect()->route('webadminfooter-section.index')->with('text_added', 'Footer text added successfully.'); 
+    {   
+        $validator = Validator::make($request->all(), [
+            'prefix_line' => 'required',
+            'postfix_words' => 'required',
+            ]);
+
+            $errors = $validator->errors();
+
+            if($validator->fails()) 
+            {
+              return redirect()->back()->withErrors($errors);
+            }
+            else
+            {
+                $footerText = new FooterSection();
+                $footerText->prefix_line = $request->prefix_line;
+                $footerText->postfix_words = $request->postfix_words;
+                $footerText->save();
+                return redirect()->route('webadminfooter-section.index')->with('text_added', 'Footer text added successfully.'); 
+            }
     }
 
     /**

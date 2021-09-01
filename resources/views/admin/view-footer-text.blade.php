@@ -11,7 +11,8 @@
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">View Footer Texts</h3>
-        <a href="{{url('webadmin/footer-section/create')}}" class=" btn btn-primary card-title float-right">Add Footer Text</a>
+        <a href="{{url('webadmin/footer-section/create')}}" class=" btn btn-primary card-title float-right">Add Footer
+            Text</a>
     </div>
     <!-- /.card-header -->
     <div class="card-body">
@@ -21,6 +22,8 @@
                     <th>Sr. #</th>
                     <th>Prefix Line</th>
                     <th>Postfix Words</th>
+                    <th>Status</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -56,7 +59,8 @@
                             <i class="fas fa-edit text-primary"></i>
                         </a>
                         <a href="javascript:void(0);" class="" id="delBtn"><i class="fa fa-trash text-danger"></i></a>
-                        <form id="formDel" action="{{ route('webadminfooter-section.destroy',$text->id) }}" method="post" id="delete-{{$key}}"> @csrf @method('delete') </form>
+                        <form id="formDel" action="{{ route('webadminfooter-section.destroy',$text->id) }}"
+                            method="post" id="delete-{{$key}}"> @csrf @method('delete') </form>
                     </td>
                     @endforeach
                 </tr>
@@ -69,6 +73,7 @@
 @endsection
 
 @section('script')
+
 @if(Session::has('text_added'))
 <script>
 toastr.success("{!! Session::get('text_added') !!}");
@@ -80,17 +85,16 @@ toastr.success("{!! Session::get('text_added') !!}");
 toastr.success("{!! Session::get('text_deleted') !!}");
 </script>
 @endif
+
 <script>
-    $('#delBtn').click(function () {
-        var abc = confirm("Are you sure?");
-        if(abc) {
-            $('#formDel').submit();
-        }
-        else{
-            e.preventDefault();
-        }
-    })
+$('#delBtn').click(function() {
+    var abc = confirm("Are you sure?");
+    if (abc) {
+        $('#formDel').submit();
+    } else {
+        e.preventDefault();
+    }
+})
 </script>
 
 @endsection
-
