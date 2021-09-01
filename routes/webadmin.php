@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\webAdmin\CustomAuthController;
+use App\Http\Controllers\webAdmin\PopupController;
 use App\Http\Controllers\webAdmin\FooterSectionController;
 
 /*
@@ -25,6 +26,9 @@ Route::get('dashboard', function () {
     return view('admin.dashboard');
 });
 Route::get('signout', [CustomAuthController::class, 'signOut']);
+
+//Popup Section
+Route::resource('popup', PopupController::class);
 
 //Footer Section
 Route::resource('footer-section', FooterSectionController::class);

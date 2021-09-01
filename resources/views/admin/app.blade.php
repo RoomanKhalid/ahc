@@ -340,6 +340,34 @@
                             </a>
                         </li>
 
+                        <!-- Popup Nav -->
+                        <li class="nav-item">
+                            <a href="#"
+                                class="nav-link {{ ( request()->is('webadmin/popup/create') || request()->is('webadmin/popup') ) ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-folder"></i>
+                                <p>
+                                    Popups Section
+                                    <i class="fas fa-angle-left right"></i>
+
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{url('webadmin/popup/create')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Add Popup</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{url('webadmin/popup')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>View Popups</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Popup Nav End -->
+
                         <!-- Category Nav -->
                         <li class="nav-item">
                             <a href="#"
@@ -365,10 +393,11 @@
                                     </a>
                                 </li>
                             </ul>
-                            <!-- Category Nav End -->
+                        </li>
+                        <!-- Category Nav End -->
 
 
-                            <!-- <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="{{url('edit-setting')}}" class="nav-link">
                                 <i class="nav-icon fas fa-cog"></i>
                                 <p class="text">Edit Settings</p>
