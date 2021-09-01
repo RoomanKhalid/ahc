@@ -29,7 +29,7 @@ Route::get('signout', [CustomAuthController::class, 'signOut']);
 
 //Banner Section
 Route::resource('banner', BannerController::class);
+Route::get('banner/change-status/{id}', [BannerController::class,'changeStatus']);
 //Footer Section
 Route::resource('footer-section', FooterSectionController::class);
-
 Route::get('footer-section/change-status/{id}', [FooterSectionController::class,'changeStatus']);

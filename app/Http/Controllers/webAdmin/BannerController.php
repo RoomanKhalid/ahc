@@ -26,7 +26,7 @@ class BannerController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.add-banner');
     }
 
     /**
@@ -37,7 +37,24 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'image'=>'required|mimes:jpg,jpeg,png', 
+        ]);
+
+        if($request->hasFile('image')) {
+            $fileNameWithExt = $request->file('image')->getClientOriginalName();
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+            $path = $request->file('image')->storeAs('public/images/banners', $fileNameToStore);
+        }
+
+        $banner = new Banner;
+        $banner->name = $request->name;
+        $banner->image = $fileNameToStore;
+        $banner->save();
+        return redirect()->route('webadminbanner.index')->with('banner_added', 'Footer text added successfully.');
     }
 
     /**
@@ -59,7 +76,8 @@ class BannerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $banner = Banner::find($id);
+        return view('admin.edit-banner', compact('banner'));
     }
 
     /**
@@ -71,7 +89,28 @@ class BannerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $request->validate([
+            'name'=>'required',
+            'image'=>'required|mimes:jpg,jpeg,png', 
+        ]);
+        
+        $banner = Banner::find($id);
+
+        if($request->hasFile('image')) {
+            $fileNameWithExt = $request->file('image')->getClientOriginalName();
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+            $path = $request->file('image')->storeAs('public/images/banners', $fileNameToStore);
+        }
+        else{
+            $fileNameToStore = $banner->image;
+        }
+        $banner->name = $request->name;
+        $banner->image = $fileNameToStore;
+        $banner->save();
+        return redirect()->route('webadminbanner.index')->with('banner_updated', 'Banner updated successfully.');
     }
 
     /**
@@ -80,8 +119,44 @@ class BannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $banner = Banner::find($id);
+        $banner->delete();
+        return redirect()->route('webadminbanner.index')->with('banner_deleted', 'Banner deleted successfully.'); 
+    }
+
+    // Ajax Enable/Disable Status 
+    public function changeStatus($id) {
+
+        $banner = Banner::find($id);
+        $class = '';
+        
+        if($banner->status == 0) {
+            $banner->status = 1;
+            $text = 'Enabled';
+            $removeClass = 'bg-danger';
+            $class = 'bg-success';
+        } else {
+            $banner->status = 0;
+            $text = 'Disabled';
+            $removeClass = 'bg-success';
+            $class = 'bg-danger';
+        }
+
+        if($banner->save()) {
+            $st = 1;
+            $msg = 'Status Updated Successfully';
+        } else {
+            $st = 0;
+            $msg = 'Unable to disable Text';
+        }
+        return response()->json([
+            'status' => $st,
+            'text' => $text,
+            'msg' => $msg,
+            'class' => $class,
+            'removeClass' => $removeClass
+        ]);
     }
 }
