@@ -111,4 +111,40 @@ class FooterSectionController extends Controller
         $footerText->delete();
         return redirect()->route('webadminfooter-section.index')->with('text_deleted', 'Footer text deleted successfully.');  
     }
+
+
+        // Ajax Enable/Disable Status
+    
+        public function changeStatus($id) {
+
+            $footertext = FooterSection::find($id);
+            $class = '';
+            
+            if($footertext->status == 0) {
+                $footertext->status = 1;
+                $text = 'Enabled';
+                $removeClass = 'bg-danger';
+                $class = 'bg-success';
+            } else {
+                $footertext->status = 0;
+                $text = 'Disabled';
+                $removeClass = 'bg-success';
+                $class = 'bg-danger';
+            }
+    
+            if($footertext->save()) {
+                $st = 1;
+                $msg = 'Status Updated Successfully';
+            } else {
+                $st = 0;
+                $msg = 'Unable to disable Text';
+            }
+            return response()->json([
+                'status' => $st,
+                'text' => $text,
+                'msg' => $msg,
+                'class' => $class,
+                'removeClass' => $removeClass
+            ]);
+    }
 }
