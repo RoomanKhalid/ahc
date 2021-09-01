@@ -340,6 +340,7 @@
                             </a>
                         </li>
 
+<<<<<<< HEAD
                         <!-- Popup Nav -->
                         <li class="nav-item">
                             <a href="#"
@@ -347,12 +348,22 @@
                                 <i class="nav-icon fas fa-folder"></i>
                                 <p>
                                     Popups Section
+=======
+                        <!-- Banner Nav -->
+                        <li class="nav-item">
+                            <a href="#"
+                                class="nav-link {{ ( request()->is('webadmin/banner/create') || request()->is('webadmin/banner') ) ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-folder"></i>
+                                <p>
+                                    Banners Section
+>>>>>>> da57049dd434511bdcb1babbfc995ea3fce8997a
                                     <i class="fas fa-angle-left right"></i>
 
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
+<<<<<<< HEAD
                                     <a href="{{url('webadmin/popup/create')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Add Popup</p>
@@ -369,6 +380,21 @@
                         <!-- Popup Nav End -->
 
                         <!-- Category Nav -->
+=======
+                                    <a href="{{url('webadmin/banner/create')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Add Banner</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{url('webadmin/banner')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>View Banners</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        <!-- Footer Nav -->
+>>>>>>> da57049dd434511bdcb1babbfc995ea3fce8997a
                         <li class="nav-item">
                             <a href="#"
                                 class="nav-link {{ ( request()->is('webadmin/footer-section/create') || request()->is('webadmin/footer-section') ) ? 'active' : '' }}">
@@ -393,8 +419,12 @@
                                     </a>
                                 </li>
                             </ul>
+<<<<<<< HEAD
                         </li>
                         <!-- Category Nav End -->
+=======
+                            <!-- Footer Nav End -->
+>>>>>>> da57049dd434511bdcb1babbfc995ea3fce8997a
 
 
                         <!-- <li class="nav-item">
