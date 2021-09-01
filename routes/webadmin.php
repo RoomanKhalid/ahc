@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\webAdmin\CustomAuthController;
+use App\Http\Controllers\webAdmin\BannerController;
 use App\Http\Controllers\webAdmin\FooterSectionController;
 
 /*
@@ -26,5 +27,7 @@ Route::get('dashboard', function () {
 });
 Route::get('signout', [CustomAuthController::class, 'signOut']);
 
+//Banner Section
+Route::resource('banner', BannerController::class);
 //Footer Section
 Route::resource('footer-section', FooterSectionController::class);

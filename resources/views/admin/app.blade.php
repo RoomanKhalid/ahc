@@ -340,7 +340,32 @@
                             </a>
                         </li>
 
-                        <!-- Category Nav -->
+                        <!-- Banner Nav -->
+                        <li class="nav-item">
+                            <a href="#"
+                                class="nav-link {{ ( request()->is('webadmin/banner/create') || request()->is('webadmin/banner') ) ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-folder"></i>
+                                <p>
+                                    Banners Section
+                                    <i class="fas fa-angle-left right"></i>
+
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{url('webadmin/banner/create')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Add Banner</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{url('webadmin/banner')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>View Banners</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        <!-- Footer Nav -->
                         <li class="nav-item">
                             <a href="#"
                                 class="nav-link {{ ( request()->is('webadmin/footer-section/create') || request()->is('webadmin/footer-section') ) ? 'active' : '' }}">
@@ -365,7 +390,7 @@
                                     </a>
                                 </li>
                             </ul>
-                            <!-- Category Nav End -->
+                            <!-- Footer Nav End -->
 
 
                             <!-- <li class="nav-item">
