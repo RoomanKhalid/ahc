@@ -2,11 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\webAdmin\CustomAuthController;
-<<<<<<< HEAD
 use App\Http\Controllers\webAdmin\PopupController;
-=======
 use App\Http\Controllers\webAdmin\BannerController;
->>>>>>> da57049dd434511bdcb1babbfc995ea3fce8997a
 use App\Http\Controllers\webAdmin\FooterSectionController;
 
 /*
@@ -31,15 +28,13 @@ Route::get('dashboard', function () {
 });
 Route::get('signout', [CustomAuthController::class, 'signOut']);
 
-<<<<<<< HEAD
 //Popup Section
 Route::resource('popup', PopupController::class);
+Route::get('popup/change-status/{id}', [PopupController::class,'changeStatus']);
 
-=======
 //Banner Section
 Route::resource('banner', BannerController::class);
 Route::get('banner/change-status/{id}', [BannerController::class,'changeStatus']);
->>>>>>> da57049dd434511bdcb1babbfc995ea3fce8997a
 //Footer Section
 Route::resource('footer-section', FooterSectionController::class);
 Route::get('footer-section/change-status/{id}', [FooterSectionController::class,'changeStatus']);

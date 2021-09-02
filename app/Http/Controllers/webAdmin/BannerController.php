@@ -15,7 +15,7 @@ class BannerController extends Controller
      */
     public function index()
     {
-        $banners = Banner::get();
+        $banners = Banner::orderBy('id', 'DESC')->get();
         return view('admin.view-banners', compact('banners'));
     }
 
@@ -92,7 +92,6 @@ class BannerController extends Controller
 
         $request->validate([
             'name'=>'required',
-            'image'=>'required|mimes:jpg,jpeg,png', 
         ]);
         
         $banner = Banner::find($id);
