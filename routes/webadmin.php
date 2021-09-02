@@ -30,6 +30,7 @@ Route::get('signout', [CustomAuthController::class, 'signOut']);
 
 //Popup Section
 Route::resource('popup', PopupController::class);
+Route::get('popup/change-status/{id}', [PopupController::class,'changeStatus']);
 
 //Banner Section
 Route::resource('banner', BannerController::class);
