@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title') | Ahc</title>
+    <title>@yield('title') | Ayaan Health Care</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -44,6 +44,8 @@
     <link rel="stylesheet" href="{{asset('admin/plugins/pushy.css')}}">
     <!-- daterange picker -->
     <link rel="stylesheet" href="{{asset('admin/plugins/daterangepicker/daterangepicker.css')}}">
+
+
     <style>
     .pagination svg {
         width: 40px;
@@ -287,7 +289,7 @@
             <a href="{{url('webadmin/dashboard')}}" class="brand-link">
                 <img src="{{asset('admin/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">Ahc</span>
+                <span class="brand-text font-weight-light">Ayaan Health Care</span>
             </a>
 
             <!-- <a href="{{url('edit-profile')}}" class="brand-link text-center">
@@ -344,7 +346,7 @@
                         <li class="nav-item">
                             <a href="#"
                                 class="nav-link {{ ( request()->is('webadmin/popup/create') || request()->is('webadmin/popup') ) ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-folder"></i>
+                                <i class="nav-icon fas fa-external-link-alt"></i>
                                 <p>
                                     Popups Section
                                     <i class="fas fa-angle-left right"></i>
@@ -372,7 +374,7 @@
                         <li class="nav-item">
                             <a href="#"
                                 class="nav-link {{ ( request()->is('webadmin/banner/create') || request()->is('webadmin/banner') ) ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-folder"></i>
+                                <i class="nav-icon fas fa-image"></i>
                                 <p>
                                     Banners Section
                                     <i class="fas fa-angle-left right"></i>
@@ -400,7 +402,7 @@
                         <li class="nav-item">
                             <a href="#"
                                 class="nav-link {{ ( request()->is('webadmin/footer-section/create') || request()->is('webadmin/footer-section') ) ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-folder"></i>
+                                <i class="nav-icon far fa-file-alt"></i>
                                 <p>
                                     Footer Section
                                     <i class="fas fa-angle-left right"></i>
@@ -424,6 +426,36 @@
                         </li>
                         <!-- Category Nav End -->
 
+
+                        <!-- News & Offers -->
+
+                        <li class="nav-item">
+                            <a href="#"
+                                class="nav-link {{ ( request()->is('webadmin/news-offers/create') || request()->is('webadmin/news-offers') ) ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-newspaper"></i>
+                                <p>
+                                    News & Offers
+                                    <i class="fas fa-angle-left right"></i>
+
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{url('webadmin/news-offers/create')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Add News & Offers</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{url('webadmin/news-offers')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>View News & Offers</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- News & Offers End-->
 
                         <!-- <li class="nav-item">
                             <a href="{{url('edit-setting')}}" class="nav-link">
@@ -469,7 +501,7 @@
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
-            <strong>Copyright &copy; 2014-2021 <a href="{{url('webadmin/dashboard')}}">Ahc</a>.</strong>
+            <strong>Copyright &copy; 2014-2021 <a href="{{url('webadmin/dashboard')}}">Ayaan Health Care</a>.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
                 <!-- <b>Version</b> 3.1.0-rc -->
@@ -540,6 +572,8 @@
 
     <!-- date-range-picker -->
     <script src="{{asset('admin/plugins/daterangepicker/daterangepicker.js')}}"></script>
+    <!-- Sweet Alert  -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script>
     $(function() {
@@ -588,7 +622,18 @@
 
     })
     </script>
+    <script>
+    $(function() {
+        // Summernote
+        $('#summernote').summernote()
 
+        // CodeMirror
+        CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+            mode: "htmlmixed",
+            theme: "monokai"
+        });
+    })
+    </script>
 
     @yield('script')
 

@@ -1,13 +1,13 @@
 @extends('admin.app')
-@section('title','Footer Section')
-@section('header_title','View Footer Text')
+@section('title','News & Offers')
+@section('header_title','View News & Offers')
 @section('maincontent')
 
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">View Footer Texts</h3>
-        <a href="{{url('webadmin/footer-section/create')}}" class=" btn btn-primary card-title float-right">Add Footer
-            Text</a>
+        <h3 class="card-title">View News & Offers</h3>
+        <a href="{{url('webadmin/news-offers/create')}}" class=" btn btn-primary card-title float-right">Add News &
+            Offers</a>
     </div>
     <!-- /.card-header -->
     <div class="card-body">
@@ -15,47 +15,46 @@
             <thead>
                 <tr>
                     <th>Sr. #</th>
-                    <th>Prefix Line</th>
-                    <th>Postfix Words</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th>Type</th>
+                    <th>Date</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @php
-                $i = 1
-                @endphp
-                @foreach($footerTexts as $key => $text)
+                @foreach($newsOffers as $key => $news)
                 <tr>
-                    <th class="text-right align-middle">{{$key+1}}</th>
-                    <td class=" align-middle">{{$text->prefix_line}}</td>
-                    <td class=" align-middle">{{$text->prefix_line}}</td>
-                    <!-- <td class=" align-middle">1</td>
-                    <td class=" align-middle">1</td>
-                    <td class=" align-middle">1</td>
-                    <td class=" align-middle">1</td> -->
-                    </td>
-                    @php
-                    $i++;
-                    @endphp
+                    <th class="text-right align-middle">{{$loop->index+1}}</th>
+                    <td class=" align-middle">{{$news->title}}</td>
+                    <td class=" align-middle">{!! $news->description !!}</td>
                     <td class="text-center align-middle">
-                        @if($text->status == 0)
-                        <button class="pushy__btn pushy__btn--sm pushy__btn--red change_status_btn enable_disable_text"
-                            id="{{$text->id}}">Disabled</button>
+                        <img class="rounded" src="{{asset('storage/images/news-offers')}}/{{$news->image}}" height="70"
+                            width="70" alt="new_image">
+                    </td>
+                    <td class=" align-middle">{{$news->type}}</td>
+                    <td class=" align-middle">{{$news->show_untill_date}}</td>
+                    <td class="text-center align-middle">
+                        @if($news->status == 0)
+                        <button class="pushy__btn pushy__btn--sm pushy__btn--red change_status_btn enable_disable_news"
+                            id="{{$news->id}}">Disabled</button>
                         @else
                         <button
-                            class="pushy__btn pushy__btn--sm pushy__btn--green change_status_btn enable_disable_text"
-                            id="{{$text->id}}">Enabled</button>
+                            class="pushy__btn pushy__btn--sm pushy__btn--green change_status_btn enable_disable_news"
+                            id="{{$news->id}}">Enabled</button>
                         @endif
                     </td>
                     <td class=" text-center align-middle">
-                        <a href="{{ route('webadminfooter-section.edit', $text->id) }}">
+                        <a href="{{ route('webadminnews-offers.edit', $news->id) }}">
                             <i class="fas fa-edit text-primary"></i>
                         </a>
                         <a href="javascript:void(0);" class="delBtn" id="delBtn"><i
                                 class="fa fa-trash text-danger"></i></a>
-                        <form id="formDel" action="{{ route('webadminfooter-section.destroy',$text->id) }}"
-                            method="post" id="delete-{{$key}}"> @csrf @method('delete') </form>
+                        <form id="formDel" action="{{ route('webadminnews-offers.destroy',$news->id) }}" method="post">
+                            @csrf @method('delete')
+                        </form>
                     </td>
                     @endforeach
                 </tr>
@@ -69,12 +68,17 @@
 
 @section('script')
 
-@if(Session::has('text_added'))
+@if(Session::has('news_offers_added'))
 <script>
-toastr.success("{!! Session::get('text_added') !!}");
+toastr.success("{!! Session::get('news_offers_added') !!}");
 </script>
 @endif
 
+@if(Session::has('news_offers_updated'))
+<script>
+toastr.success("{!! Session::get('news_offers_updated') !!}");
+</script>
+@endif
 
 
 <script>
@@ -103,19 +107,14 @@ $(document).ready(function() {
     });
 });
 </script>
-
-
-
-
-
 <script>
 $(document).ready(function() {
-    $(document).on('click', '.enable_disable_text', function() {
+    $(document).on('click', '.enable_disable_news', function() {
         const thisRef = $(this);
         thisRef.text('Processing');
         $.ajax({
             type: 'GET',
-            url: 'footer-section/change-status/' + thisRef.attr('id'),
+            url: 'news-offers/change-status/' + thisRef.attr('id'),
             success: function(response) {
                 console.log(response);
                 if (response.status == 1) {

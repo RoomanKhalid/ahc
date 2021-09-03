@@ -5,6 +5,7 @@ use App\Http\Controllers\webAdmin\CustomAuthController;
 use App\Http\Controllers\webAdmin\PopupController;
 use App\Http\Controllers\webAdmin\BannerController;
 use App\Http\Controllers\webAdmin\FooterSectionController;
+use App\Http\Controllers\webAdmin\NewsOffersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,13 +29,21 @@ Route::get('dashboard', function () {
 });
 Route::get('signout', [CustomAuthController::class, 'signOut']);
 
+
 //Popup Section
 Route::resource('popup', PopupController::class);
 Route::get('popup/change-status/{id}', [PopupController::class,'changeStatus']);
 
+
 //Banner Section
 Route::resource('banner', BannerController::class);
 Route::get('banner/change-status/{id}', [BannerController::class,'changeStatus']);
+
+
 //Footer Section
 Route::resource('footer-section', FooterSectionController::class);
 Route::get('footer-section/change-status/{id}', [FooterSectionController::class,'changeStatus']);
+
+// News & Offers
+Route::resource('news-offers', NewsOffersController::class);
+Route::get('news-offers/change-status/{id}', [NewsOffersController::class,'changeStatus']);

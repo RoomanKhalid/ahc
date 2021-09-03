@@ -28,8 +28,9 @@
                 <tr>
                     <th class="text-right align-middle">{{$key+1}}</th>
                     <td class=" align-middle">{{$popup->title}}</td>
-                    <td class="text-center align-middle"><img class="rounded" src="{{asset('storage/images/popups')}}/{{$popup->image}}" height="70"
-                            width="70" alt="Popup_image">
+                    <td class="text-center align-middle"><img class="rounded"
+                            src="{{asset('storage/images/popups')}}/{{$popup->image}}" height="70" width="70"
+                            alt="Popup_image">
                     </td>
                     @php
                     $i++;
@@ -48,7 +49,8 @@
                         <a href="{{ route('webadminpopup.edit', $popup->id) }}">
                             <i class="fas fa-edit text-primary"></i>
                         </a>
-                        <a href="javascript:void(0);" class="" id="delBtn"><i class="fa fa-trash text-danger"></i></a>
+                        <a href="javascript:void(0);" class="delBtn" id="delBtn"><i
+                                class="fa fa-trash text-danger"></i></a>
                         <form id="formDel" action="{{ route('webadminpopup.destroy',$popup->id) }}" method="post"
                             id="delete-{{$key}}"> @csrf @method('delete') </form>
                     </td>
@@ -70,12 +72,6 @@ toastr.success("{!! Session::get('popup_added') !!}");
 </script>
 @endif
 
-@if(Session::has('popup_deleted'))
-<script>
-toastr.success("{!! Session::get('popup_deleted') !!}");
-</script>
-@endif
-
 @if(Session::has('popup_updated'))
 <script>
 toastr.success("{!! Session::get('popup_updated') !!}");
@@ -83,14 +79,30 @@ toastr.success("{!! Session::get('popup_updated') !!}");
 @endif
 
 <script>
-$('#delBtn').click(function() {
-    var abc = confirm("Are you sure?");
-    if (abc) {
-        $('#formDel').submit();
-    } else {
+$(document).ready(function() {
+    $('.delBtn').click(function(e) {
         e.preventDefault();
-    }
-})
+        swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this Record!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $('#formDel').submit();
+                    swal("Poof! Your record has been deleted!", {
+                        icon: "success",
+                    });
+                } else {
+                    swal("Your record is safe!", {
+                        icon: "success",
+                    });
+                }
+            });
+    });
+});
 </script>
 
 <script>
