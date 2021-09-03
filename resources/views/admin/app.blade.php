@@ -370,6 +370,34 @@
                         </li>
                         <!-- Popup Nav End -->
 
+                        <!-- Doctors Nav -->
+                        <li class="nav-item">
+                            <a href="#"
+                                class="nav-link {{ ( request()->is('webadmin/doctor/create') || request()->is('webadmin/doctor') ) ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-folder"></i>
+                                <p>
+                                    Doctors Section
+                                    <i class="fas fa-angle-left right"></i>
+
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{url('webadmin/doctor/create')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Add Doctor</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{url('webadmin/doctor')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>View Doctors</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Doctors Nav End -->
+
                         <!-- Banners Nav -->
                         <li class="nav-item">
                             <a href="#"
