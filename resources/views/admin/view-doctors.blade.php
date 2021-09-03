@@ -41,7 +41,8 @@
                     @endphp
                     <td class="text-center align-middle">
                         @if($doctor->status == 0)
-                        <button class="pushy__btn pushy__btn--sm pushy__btn--red change_status_btn enable_disable_doctor"
+                        <button
+                            class="pushy__btn pushy__btn--sm pushy__btn--red change_status_btn enable_disable_doctor"
                             id="{{$doctor->id}}">Disabled</button>
                         @else
                         <button
@@ -53,9 +54,10 @@
                         <a href="{{ route('webadmindoctor.edit', $doctor->id) }}">
                             <i class="fas fa-edit text-primary"></i>
                         </a>
-                        <a href="javascript:void(0);" class="" id="delBtn"><i class="fa fa-trash text-danger"></i></a>
-                        <form id="formDel" action="{{ route('webadmindoctor.destroy',$doctor->id) }}"
-                            method="post" id="delete-{{$key}}"> @csrf @method('delete') </form>
+                        <a href="javascript:void(0);" class="delBtn" id="delBtn"><i
+                                class="fa fa-trash text-danger"></i></a>
+                        <form id="formDel" action="{{ route('webadmindoctor.destroy',$doctor->id) }}" method="post"
+                            id="delete-{{$key}}"> @csrf @method('delete') </form>
                     </td>
                     @endforeach
                 </tr>
@@ -75,11 +77,7 @@ toastr.success("{!! Session::get('doctor_added') !!}");
 </script>
 @endif
 
-@if(Session::has('doctor_deleted'))
-<script>
-toastr.success("{!! Session::get('doctor_deleted') !!}");
-</script>
-@endif
+
 
 @if(Session::has('doctor_updated'))
 <script>
@@ -88,14 +86,30 @@ toastr.success("{!! Session::get('doctor_updated') !!}");
 @endif
 
 <script>
-$('#delBtn').click(function() {
-    var abc = confirm("Are you sure?");
-    if (abc) {
-        $('#formDel').submit();
-    } else {
+$(document).ready(function() {
+    $('.delBtn').click(function(e) {
         e.preventDefault();
-    }
-})
+        swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this Record!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $('#formDel').submit();
+                    swal("Poof! Your record has been deleted!", {
+                        icon: "success",
+                    });
+                } else {
+                    swal("Your record is safe!", {
+                        icon: "success",
+                    });
+                }
+            });
+    });
+});
 </script>
 
 <script>

@@ -54,7 +54,7 @@ class BannerController extends Controller
         $banner->name = $request->name;
         $banner->image = $fileNameToStore;
         $banner->save();
-        return redirect()->route('webadminbanner.index')->with('banner_added', 'Footer text added successfully.');
+        return redirect()->route('webadminbanner.index')->with('banner_added', 'Banner added successfully.');
     }
 
     /**

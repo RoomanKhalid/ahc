@@ -75,6 +75,12 @@ toastr.success("{!! Session::get('text_added') !!}");
 </script>
 @endif
 
+@if(Session::has('text_updated'))
+<script>
+toastr.success("{!! Session::get('text_updated') !!}");
+</script>
+@endif
+
 
 
 <script>
