@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\webAdmin\CustomAuthController;
+use App\Http\Controllers\webAdmin\DoctorController;
 use App\Http\Controllers\webAdmin\PopupController;
 use App\Http\Controllers\webAdmin\BannerController;
 use App\Http\Controllers\webAdmin\FooterSectionController;
@@ -27,6 +28,10 @@ Route::get('dashboard', function () {
     return view('admin.dashboard');
 });
 Route::get('signout', [CustomAuthController::class, 'signOut']);
+
+//Doctors Section
+Route::resource('doctor', DoctorController::class);
+Route::get('doctor/change-status/{id}', [DoctorController::class,'changeStatus']);
 
 //Popup Section
 Route::resource('popup', PopupController::class);
