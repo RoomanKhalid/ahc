@@ -7,6 +7,7 @@ use App\Http\Controllers\webAdmin\PopupController;
 use App\Http\Controllers\webAdmin\BannerController;
 use App\Http\Controllers\webAdmin\FooterSectionController;
 use App\Http\Controllers\webAdmin\NewsOffersController;
+use App\Http\Controllers\webAdmin\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,3 +52,6 @@ Route::get('footer-section/change-status/{id}', [FooterSectionController::class,
 // News & Offers
 Route::resource('news-offers', NewsOffersController::class);
 Route::get('news-offers/change-status/{id}', [NewsOffersController::class,'changeStatus']);
+
+// Users
+Route::resource('users', UserController::class);
