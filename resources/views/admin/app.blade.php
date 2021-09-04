@@ -485,6 +485,37 @@
 
                         <!-- News & Offers End-->
 
+
+                        <!-- Users -->
+
+                        <li class="nav-item">
+                            <a href="#"
+                                class="nav-link {{ ( request()->is('webadmin/users/create') || request()->is('webadmin/users') ) ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-newspaper"></i>
+                                <p>
+                                    Users
+                                    <i class="fas fa-angle-left right"></i>
+
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{url('webadmin/users/create')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Add User</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{url('webadmin/users')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>View Users</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- Users End-->
+
                         <!-- <li class="nav-item">
                             <a href="{{url('edit-setting')}}" class="nav-link">
                                 <i class="nav-icon fas fa-cog"></i>

@@ -20,6 +20,12 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'profile_image',
+        'number',
+        'address',
+        'nationality_id',
+        'education',
+        'role',
         'password',
     ];
 
@@ -41,4 +47,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function nationality()
+    {
+        return $this->hasOne('App\Nationalities','id','nationality_id');
+    }
 }
