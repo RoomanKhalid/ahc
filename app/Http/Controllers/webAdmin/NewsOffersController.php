@@ -46,18 +46,12 @@ class NewsOffersController extends Controller
             'show_untill_date'=>'required',
         ]);
 
-        if($request->hasFile('image')) {
-            $fileNameWithExt = $request->file('image')->getClientOriginalName();
-            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-            $extension = $request->file('image')->getClientOriginalExtension();
-            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
-            $path = $request->file('image')->storeAs('public/images/news-offers', $fileNameToStore);
-        }
+        $getUploadedName = HelperController::uplaodsingleImage($request->file('image'),'images/news-offers/');
 
         $newsOffers = new NewsOffer();
         $newsOffers->title = $request->title;
         $newsOffers->description = $request->description;
-        $newsOffers->image = $fileNameToStore;
+        $newsOffers->image = $getUploadedName;
         $newsOffers->type = $request->type;
         $newsOffers->show_untill_date = $request->show_untill_date;
         $newsOffers->save();
@@ -106,19 +100,14 @@ class NewsOffersController extends Controller
         
         $newsOffers = NewsOffer::find($id);
 
-        if($request->hasFile('image')) {
-            $fileNameWithExt = $request->file('image')->getClientOriginalName();
-            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-            $extension = $request->file('image')->getClientOriginalExtension();
-            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
-            $path = $request->file('image')->storeAs('public/images/news-offers', $fileNameToStore);
+        if($request->image)
+        {
+            $getUploadedName = HelperController::uplaodsingleImage($request->file('image'),'images/news-offers/');
+            $newsOffers->image = $getUploadedName;
         }
-        else{
-            $fileNameToStore = $newsOffers->image;
-        }
+
         $newsOffers->title = $request->title;
         $newsOffers->description = $request->description;
-        $newsOffers->image = $fileNameToStore;
         $newsOffers->type = $request->type;
         $newsOffers->show_untill_date = $request->show_untill_date;
         $newsOffers->save();

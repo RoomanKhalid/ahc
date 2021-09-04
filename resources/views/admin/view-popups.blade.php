@@ -28,9 +28,8 @@
                 <tr>
                     <th class="text-right align-middle">{{$key+1}}</th>
                     <td class=" align-middle">{{$popup->title}}</td>
-                    <td class="text-center align-middle"><img class="rounded"
-                            src="{{asset('storage/images/popups')}}/{{$popup->image}}" height="70" width="70"
-                            alt="Popup_image">
+                    <td class="text-center align-middle">
+                        <img src="{{$popup->image}}" class="rounded" height="70" width="70" alt="">
                     </td>
                     @php
                     $i++;

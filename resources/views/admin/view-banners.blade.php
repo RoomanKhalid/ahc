@@ -28,9 +28,8 @@
                 <tr>
                     <th class="text-right align-middle">{{$key+1}}</th>
                     <td class=" align-middle">{{$banner->name}}</td>
-                    <td class="text-center align-middle"><img class="rounded"
-                            src="{{asset('storage/images/banners')}}/{{$banner->image}}" height="70" width="70"
-                            alt="Banner_image">
+                    <td class="text-center align-middle">
+                        <img src="{{$banner->image}}" class="rounded" height="70" width="70" alt="">
                     </td>
                     @php
                     $i++;

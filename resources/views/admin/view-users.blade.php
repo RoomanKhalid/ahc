@@ -34,9 +34,8 @@
                     <th class="text-right align-middle">{{$key+1}}</th>
                     <td class=" align-middle">{{$user->name}}</td>
                     <td class=" align-middle">{{$user->email}}</td>
-                    <td class="text-center align-middle"><img class="rounded"
-                            src="{{asset('storage/images/users')}}/{{$user->profile_image}}" height="70" width="70"
-                            alt="Profile Image">
+                    <td class="text-center align-middle">
+                        <img src="{{$user->profile_image}}" class="rounded" height="70" width="70" alt="">
                     </td>
                     <td class=" align-middle">{{$user->number}}</td>
                     <td class=" align-middle">{{$user->address}}</td>
