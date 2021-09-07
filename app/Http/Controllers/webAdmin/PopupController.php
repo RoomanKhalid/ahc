@@ -42,17 +42,11 @@ class PopupController extends Controller
             'image'=>'required|mimes:jpg,jpeg,png', 
         ]);
 
-        if($request->hasFile('image')) {
-            $fileNameWithExt = $request->file('image')->getClientOriginalName();
-            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-            $extension = $request->file('image')->getClientOriginalExtension();
-            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
-            $path = $request->file('image')->storeAs('public/images/popups', $fileNameToStore);
-        }
+        $getUploadedName = HelperController::uplaodsingleImage($request->file('image'),'images/popups/');
 
         $popup = new Popup;
         $popup->title = $request->title;
-        $popup->image = $fileNameToStore;
+        $popup->image = $getUploadedName;
         $popup->save();
         return redirect()->route('webadminpopup.index')->with('popup_added', 'Popup added successfully.');
     }
@@ -95,18 +89,12 @@ class PopupController extends Controller
         
         $popup = Popup::find($id);
 
-        if($request->hasFile('image')) {
-            $fileNameWithExt = $request->file('image')->getClientOriginalName();
-            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-            $extension = $request->file('image')->getClientOriginalExtension();
-            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
-            $path = $request->file('image')->storeAs('public/images/popups', $fileNameToStore);
-        }
-        else{
-            $fileNameToStore = $popup->image;
+        if($request->image)
+        {
+            $getUploadedName = HelperController::uplaodsingleImage($request->file('image'),'images/popups/');
+            $popup->image = $getUploadedName;
         }
         $popup->title = $request->title;
-        $popup->image = $fileNameToStore;
         $popup->save();
         return redirect()->route('webadminpopup.index')->with('popup_updated', 'Popup updated successfully.');
     }

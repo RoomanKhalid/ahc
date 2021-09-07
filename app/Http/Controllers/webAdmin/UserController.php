@@ -62,19 +62,14 @@ class UserController extends Controller
             }
             else
             {
-                if($request->hasFile('profile_image')) {
-                    $fileNameWithExt = $request->file('profile_image')->getClientOriginalName();
-                    $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-                    $extension = $request->file('profile_image')->getClientOriginalExtension();
-                    $fileNameToStore = $fileName.'_'.time().'.'.$extension;
-                    $path = $request->file('profile_image')->storeAs('public/images/users', $fileNameToStore);
-                }
+                $getUploadedName = HelperController::uplaodsingleImage($request->file('profile_image'),'images/users/');
+
                 
                 $users = new User();
 
                 $users->name = $request->name;
                 $users->email = $request->email;
-                $users->profile_image = $fileNameToStore;
+                $users->profile_image = $getUploadedName;
                 $users->number = $request->number;
                 $users->address = $request->address;
                 $users->nationality_id = $request->nationality_id;
@@ -139,15 +134,10 @@ class UserController extends Controller
             }
             else
             {
-                if($request->hasFile('profile_image')) {
-                    $fileNameWithExt = $request->file('profile_image')->getClientOriginalName();
-                    $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-                    $extension = $request->file('profile_image')->getClientOriginalExtension();
-                    $fileNameToStore = $fileName.'_'.time().'.'.$extension;
-                    $path = $request->file('profile_image')->storeAs('public/images/users', $fileNameToStore);
-                }
-                else{
-                    $fileNameToStore = $users->profile_image;
+                if($request->profile_image)
+                {
+                    $getUploadedName = HelperController::uplaodsingleImage($request->file('profile_image'),'images/users/');
+                    $users->profile_image = $getUploadedName;
                 }
 
                 if($request->password)

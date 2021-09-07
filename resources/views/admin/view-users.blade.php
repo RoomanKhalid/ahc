@@ -33,10 +33,16 @@
                 <tr>
                     <th class="text-right align-middle">{{$key+1}}</th>
                     <td class=" align-middle">{{$user->name}}</td>
+<<<<<<< HEAD
                     <!-- <td class=" align-middle">{{$user->email}}</td> -->
                     <td class="text-center align-middle"><img class="rounded"
                             src="{{asset('storage/images/users')}}/{{$user->profile_image}}" height="70" width="70"
                             alt="Profile Image">
+=======
+                    <td class=" align-middle">{{$user->email}}</td>
+                    <td class="text-center align-middle">
+                        <img src="{{$user->profile_image}}" class="rounded" height="70" width="70" alt="">
+>>>>>>> 96dc0d187c36a5afe15f830cc4c892948ab71ef0
                     </td>
                     <td class=" align-middle">{{$user->number}}</td>
                     <!-- <td class=" align-middle">{{$user->address}}</td> -->

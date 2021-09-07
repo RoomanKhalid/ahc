@@ -53,13 +53,7 @@ class DoctorController extends Controller
             'center' => 'required',
         ]);
 
-        if($request->hasFile('doctor_profile_image')) {
-            $fileNameWithExt = $request->file('doctor_profile_image')->getClientOriginalName();
-            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-            $extension = $request->file('doctor_profile_image')->getClientOriginalExtension();
-            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
-            $path = $request->file('doctor_profile_image')->storeAs('public/images/doctors', $fileNameToStore);
-        }
+        $getUploadedName = HelperController::uplaodsingleImage($request->file('doctor_profile_image'),'images/doctors/');
 
         $doctor = new Doctor;
         $doctor->clinic_id = $request->clinic_id;
@@ -67,7 +61,7 @@ class DoctorController extends Controller
         $doctor->short_description = $request->short_description;
         $doctor->description = $request->description;
         $doctor->appointment_duration = $request->appointment_duration;
-        $doctor->doctor_profile_image = $fileNameToStore;
+        $doctor->doctor_profile_image = $getUploadedName;
         $doctor->mobile_no = $request->mobile_no;
         $doctor->designation = $request->designation;
         $doctor->joining_date = $request->joining_date;
@@ -130,22 +124,17 @@ class DoctorController extends Controller
         
         $doctor = Doctor::find($id);
 
-        if($request->hasFile('doctor_profile_image')) {
-            $fileNameWithExt = $request->file('doctor_profile_image')->getClientOriginalName();
-            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-            $extension = $request->file('doctor_profile_image')->getClientOriginalExtension();
-            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
-            $path = $request->file('doctor_profile_image')->storeAs('public/images/doctors', $fileNameToStore);
+        if($request->image)
+        {
+            $getUploadedName = HelperController::uplaodsingleImage($request->file('doctor_profile_image'),'images/doctors/');
+            $doctor->doctor_profile_image = $getUploadedName;
         }
-        else{
-            $fileNameToStore = $doctor->doctor_profile_image;
-        }
+        
         $doctor->clinic_id = $request->clinic_id;
         $doctor->doctor_name = $request->doctor_name;
         $doctor->short_description = $request->short_description;
         $doctor->description = $request->description;
         $doctor->appointment_duration = $request->appointment_duration;
-        $doctor->doctor_profile_image = $fileNameToStore;
         $doctor->mobile_no = $request->mobile_no;
         $doctor->designation = $request->designation;
         $doctor->joining_date = $request->joining_date;

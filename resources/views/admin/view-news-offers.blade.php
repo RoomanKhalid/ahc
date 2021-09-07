@@ -31,8 +31,7 @@
                     <td class=" align-middle">{{$news->title}}</td>
                     <td class=" align-middle">{!! $news->description !!}</td>
                     <td class="text-center align-middle">
-                        <img class="rounded" src="{{asset('storage/images/news-offers')}}/{{$news->image}}" height="70"
-                            width="70" alt="new_image">
+                        <img src="{{$news->image}}" class="rounded" height="70" width="70" alt="">
                     </td>
                     <td class=" align-middle">{{$news->type}}</td>
                     <td class=" align-middle">{{$news->show_untill_date}}</td>

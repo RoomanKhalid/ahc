@@ -42,17 +42,11 @@ class BannerController extends Controller
             'image'=>'required|mimes:jpg,jpeg,png', 
         ]);
 
-        if($request->hasFile('image')) {
-            $fileNameWithExt = $request->file('image')->getClientOriginalName();
-            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-            $extension = $request->file('image')->getClientOriginalExtension();
-            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
-            $path = $request->file('image')->storeAs('public/images/banners', $fileNameToStore);
-        }
+        $getUploadedName = HelperController::uplaodsingleImage($request->file('image'),'images/banners/');
 
         $banner = new Banner;
         $banner->name = $request->name;
-        $banner->image = $fileNameToStore;
+        $banner->image = $getUploadedName;
         $banner->save();
         return redirect()->route('webadminbanner.index')->with('banner_added', 'Banner added successfully.');
     }
@@ -96,18 +90,14 @@ class BannerController extends Controller
         
         $banner = Banner::find($id);
 
-        if($request->hasFile('image')) {
-            $fileNameWithExt = $request->file('image')->getClientOriginalName();
-            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-            $extension = $request->file('image')->getClientOriginalExtension();
-            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
-            $path = $request->file('image')->storeAs('public/images/banners', $fileNameToStore);
+        
+        if($request->image)
+        {
+            $getUploadedName = HelperController::uplaodsingleImage($request->file('image'),'images/banners/');
+            $banner->image = $getUploadedName;
         }
-        else{
-            $fileNameToStore = $banner->image;
-        }
+
         $banner->name = $request->name;
-        $banner->image = $fileNameToStore;
         $banner->save();
         return redirect()->route('webadminbanner.index')->with('banner_updated', 'Banner updated successfully.');
     }
