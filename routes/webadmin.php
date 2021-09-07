@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\webAdmin\CustomAuthController;
 use App\Http\Controllers\webAdmin\DoctorController;
+use App\Http\Controllers\webAdmin\ScheduleController;
 use App\Http\Controllers\webAdmin\PopupController;
 use App\Http\Controllers\webAdmin\BannerController;
 use App\Http\Controllers\webAdmin\FooterSectionController;
@@ -34,6 +35,10 @@ Route::get('signout', [CustomAuthController::class, 'signOut']);
 //Doctors Section
 Route::resource('doctor', DoctorController::class);
 Route::get('doctor/change-status/{id}', [DoctorController::class,'changeStatus']);
+
+//Schedule Section
+Route::resource('schedule', ScheduleController::class);
+Route::get('schedule/change-status/{id}', [ScheduleController::class,'changeStatus']);
 
 //Popup Section
 Route::resource('popup', PopupController::class);

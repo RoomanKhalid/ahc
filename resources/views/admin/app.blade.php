@@ -398,6 +398,34 @@
                         </li>
                         <!-- Doctors Nav End -->
 
+                        <!-- Schedules Nav -->
+                        <li class="nav-item">
+                            <a href="#"
+                                class="nav-link {{ ( request()->is('webadmin/schedule/create') || request()->is('webadmin/schedule') ) ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-folder"></i>
+                                <p>
+                                    Schedules Section
+                                    <i class="fas fa-angle-left right"></i>
+
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{url('webadmin/schedule/create')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Add Schedule</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{url('webadmin/schedule')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>View Schedules</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Schedules Nav End -->
+
                         <!-- Banners Nav -->
                         <li class="nav-item">
                             <a href="#"
@@ -668,19 +696,26 @@
 
 
     <script>
-    $(function() {
+        $(function() {
+            //Date range picker
+            $('.reservationdate').datetimepicker({
+                format: 'L'
+            });
 
-        //Date range picker
-        $('.reservationdate').datetimepicker({
-            format: 'L'
-        });
+            $('.reservationdate1').datetimepicker({
+                format: 'L'
+            });
+            
+            //Timepicker
+            $('#timepicker').datetimepicker({
+            format: 'LT'
+            })
+            
+            $('#timepicker1').datetimepicker({
+            format: 'LT'
+            })
 
-        $('.reservationdate1').datetimepicker({
-            format: 'L'
-        });
-
-    })
-    </script>
+        })
     <script>
     $(function() {
         // Summernote

@@ -15,12 +15,12 @@
                 <tr>
                     <th style="width: 2%">Sr. #</th>
                     <th>name</th>
-                    <th>email</th>
+                    <!-- <th>email</th> -->
                     <th>profile_image</th>
                     <th>number</th>
-                    <th>address</th>
+                    <!-- <th>address</th> -->
                     <th>Nationality</th>
-                    <th>education</th>
+                    <!-- <th>education</th> -->
                     <th>role</th>
                     <th>Action</th>
                 </tr>
@@ -33,15 +33,15 @@
                 <tr>
                     <th class="text-right align-middle">{{$key+1}}</th>
                     <td class=" align-middle">{{$user->name}}</td>
-                    <td class=" align-middle">{{$user->email}}</td>
+                    <!-- <td class=" align-middle">{{$user->email}}</td> -->
                     <td class="text-center align-middle"><img class="rounded"
                             src="{{asset('storage/images/users')}}/{{$user->profile_image}}" height="70" width="70"
                             alt="Profile Image">
                     </td>
                     <td class=" align-middle">{{$user->number}}</td>
-                    <td class=" align-middle">{{$user->address}}</td>
+                    <!-- <td class=" align-middle">{{$user->address}}</td> -->
                     <td class=" align-middle">{{$user->nationality->country_name}}</td>
-                    <td class=" align-middle">{{$user->education}}</td>
+                    <!-- <td class=" align-middle">{{$user->education}}</td> -->
                     <td class=" align-middle">{{$user->role}}</td>
 
                     <td class=" text-center align-middle">
